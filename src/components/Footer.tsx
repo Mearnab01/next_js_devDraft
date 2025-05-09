@@ -15,20 +15,26 @@ function Footer() {
 
           {/* Right Side: Links and Credit */}
           <div className="flex items-center gap-6">
-            <Link
+            <a
               href="https://gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-gray-400 hover:text-gray-300 transition-colors"
             >
               Support
-            </Link>
-            <Link
+            </a>
+            <a
               href="https://github.com/Mearnab01"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-gray-400 hover:text-gray-300 transition-colors"
             >
               Github
-            </Link>
+            </a>
             <Link
               href="/pricing"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-gray-400 hover:text-gray-300 transition-colors"
             >
               Pricing
