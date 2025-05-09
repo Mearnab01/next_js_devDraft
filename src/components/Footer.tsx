@@ -9,29 +9,29 @@ function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Left Side: Logo and Tagline */}
           <div className="flex items-center gap-2 text-gray-400">
-            <Blocks className="size-5" />
+            <Blocks className="w-5 h-5" />
             <span>Empowering developers to build innovative solutions.</span>
           </div>
 
           {/* Right Side: Links and Credit */}
           <div className="flex items-center gap-6">
             <Link
-              href="/support"
+              href="https://gmail.com"
               className="text-gray-400 hover:text-gray-300 transition-colors"
             >
               Support
             </Link>
             <Link
-              href="/privacy"
+              href="https://github.com/Mearnab01"
               className="text-gray-400 hover:text-gray-300 transition-colors"
             >
-              Privacy
+              Github
             </Link>
             <Link
-              href="/terms"
+              href="/pricing"
               className="text-gray-400 hover:text-gray-300 transition-colors"
             >
-              Terms
+              Pricing
             </Link>
             <span className="text-gray-400 hover:text-gray-300 transition-colors">
               © 2025 Arnab. All rights reserved.
