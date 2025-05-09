@@ -115,7 +115,7 @@ function EditorPanel() {
                 height={24}
               />
             </div>
-            <div className="hidden lg:flex">
+            <div className="hidden lg:flex flex-col">
               <h2 className="text-sm font-medium text-white">Code Editor</h2>
               <p className="text-xs text-gray-500">
                 Write and execute your code
