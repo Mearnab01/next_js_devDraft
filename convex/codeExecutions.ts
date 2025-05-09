@@ -6,7 +6,6 @@ export const saveExecution = mutation({
   args: {
     language: v.string(),
     code: v.string(),
-    // we could have either one of them, or both at the same time
     output: v.optional(v.string()),
     error: v.optional(v.string()),
   },
@@ -14,7 +13,7 @@ export const saveExecution = mutation({
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) throw new ConvexError("Not authenticated");
 
-    // check pro status
+    // Check pro status
     const user = await ctx.db
       .query("users")
       .withIndex("by_user_id")
@@ -25,10 +24,30 @@ export const saveExecution = mutation({
       throw new ConvexError("Pro subscription required to use this language");
     }
 
+    //Check if the same code execution already exists
+    const existingExecution = await ctx.db
+      .query("codeExecutions")
+      .withIndex("by_user_id_language_code")
+      .filter((q) =>
+        q.and(
+          q.eq(q.field("userId"), identity.subject),
+          q.eq(q.field("language"), args.language),
+          q.eq(q.field("code"), args.code)
+        )
+      )
+      .first();
+
+    if (existingExecution) {
+      console.log("Duplicate code execution found. Skipping save.");
+      return { message: "Execution already saved." };
+    }
+
     await ctx.db.insert("codeExecutions", {
       ...args,
       userId: identity.subject,
     });
+
+    return { message: "Code execution saved successfully." };
   },
 });
 

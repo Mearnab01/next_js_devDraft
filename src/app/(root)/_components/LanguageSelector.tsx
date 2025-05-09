@@ -60,10 +60,11 @@ function LanguageSelector({ hasAccess }: { hasAccess: boolean }) {
             className="w-full h-full object-contain relative z-10"
           />
         </div>
-
-        <span className="text-gray-200 min-w-[80px] text-left group-hover:text-white transition-colors">
-          {currentLanguageObj.label}
-        </span>
+        <div className="hidden lg:block">
+          <span className="text-gray-200 min-w-[80px] text-left group-hover:text-white transition-colors">
+            {currentLanguageObj.label}
+          </span>
+        </div>
 
         <ChevronDownIcon
           className={`size-4 text-gray-400 transition-all duration-300 group-hover:text-gray-300

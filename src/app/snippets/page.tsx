@@ -52,7 +52,7 @@ function SnippetsPage() {
     from-pink-500/10 to-purple-500/10 text-sm text-pink-400 mb-6 shadow-md shadow-pink-500/10"
           >
             <BookOpen className="w-4 h-4" />
-            Made by Devs, for Devs 💻
+            Made by a Dev, for Devs
           </motion.div>
 
           <motion.h1
@@ -70,8 +70,8 @@ function SnippetsPage() {
             transition={{ delay: 0.25, duration: 0.6, ease: "easeOut" }}
             className="text-lg text-gray-400 leading-relaxed"
           >
-            Discover 🔍 and share ✨ production-ready code snippets built by the
-            dev community. Save time. Write less. Build more.
+            Discover and share production-ready code. Save time. Write less.
+            Build more ✨.
           </motion.p>
         </div>
 
@@ -120,6 +120,8 @@ function SnippetsPage() {
                   <Image
                     src={`/${lang}.png`}
                     alt={lang}
+                    width={16}
+                    height={16}
                     className="w-4 h-4 object-contain"
                   />
                   <span className="text-sm">{lang}</span>

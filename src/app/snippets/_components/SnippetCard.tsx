@@ -5,8 +5,7 @@ import { useUser } from "@clerk/nextjs";
 import { useMutation } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { useState } from "react";
-import { motion } from "framer-motion";
-
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Clock, Trash2, User } from "lucide-react";
 import Image from "next/image";
@@ -16,7 +15,9 @@ import StarButton from "@/components/StarButton";
 function SnippetCard({ snippet }: { snippet: Snippet }) {
   const { user } = useUser();
   const deleteSnippet = useMutation(api.snippets.deleteSnippet);
+
   const [isDeleting, setIsDeleting] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
   const handleDelete = async () => {
     setIsDeleting(true);
 
@@ -91,7 +92,7 @@ function SnippetCard({ snippet }: { snippet: Snippet }) {
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      onClick={handleDelete}
+                      onClick={() => setShowConfirm(true)}
                       disabled={isDeleting}
                       className={`group flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all duration-200
                     ${
@@ -109,6 +110,48 @@ function SnippetCard({ snippet }: { snippet: Snippet }) {
                   </div>
                 )}
               </div>
+              {/* Confirmation Modal */}
+              <AnimatePresence>
+                {showConfirm && (
+                  <motion.div
+                    className="fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    <motion.div
+                      className="bg-[#1e1e2e] p-6 rounded-xl shadow-xl text-white"
+                      initial={{ y: -30, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: -30, opacity: 0 }}
+                    >
+                      <h3 className="text-lg font-medium mb-2">
+                        Delete Snippet
+                      </h3>
+                      <p className="text-gray-400 mb-4">
+                        Are you sure you want to delete this snippet?
+                      </p>
+                      <div className="flex gap-4 justify-end">
+                        <button
+                          onClick={() => setShowConfirm(false)}
+                          className="px-4 py-2 text-sm bg-gray-700 rounded-md hover:bg-gray-600"
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          onClick={handleDelete}
+                          disabled={isDeleting}
+                          className={`px-4 py-2 text-sm rounded-md ${
+                            isDeleting ? "bg-red-500/50" : "bg-red-600"
+                          } hover:bg-red-500`}
+                        >
+                          {isDeleting ? "Deleting..." : "Delete"}
+                        </button>
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             {/* Content */}

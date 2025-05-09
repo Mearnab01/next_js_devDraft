@@ -115,7 +115,7 @@ function EditorPanel() {
                 height={24}
               />
             </div>
-            <div>
+            <div className="hidden lg:flex">
               <h2 className="text-sm font-medium text-white">Code Editor</h2>
               <p className="text-xs text-gray-500">
                 Write and execute your code
@@ -124,7 +124,7 @@ function EditorPanel() {
           </div>
           <div className="flex items-center gap-3">
             {/* Font Size Slider */}
-            <div className="flex items-center gap-3 px-3 py-2 bg-[#1e1e2e] rounded-lg ring-1 ring-white/5">
+            <div className="hidden lg:flex items-center gap-3 px-3 py-2 bg-[#1e1e2e] rounded-lg ring-1 ring-white/5">
               <TypeIcon className="size-4 text-gray-400" />
               <div className="flex items-center gap-3">
                 <input
